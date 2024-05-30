@@ -8,12 +8,16 @@ var app = require('../app');
 var debug = require('debug')('node-template:server');
 var http = require('http');
 var os = require('os');
+const { sequelize } = require("../models/index")
 
 /**
  * Get port from environment and store in Express.
  */
 
 var port = normalizePort(process.env.PORT || '3000');
+
+
+
 app.set('port', port);
 
 /**
@@ -22,14 +26,26 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
+
+let ip = "0.0.0.0"
 /**
- * Listen on provided port, on all network interfaces.
+ * 不需要数据时直接替换下面的代码
  */
 
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+// server.listen(port);
+// server.on('error', onError);
+// server.on('listening', onListening);
 
+sequelize.sync()
+  .then(() => {
+    console.log('Database synchronized');
+    server.listen(port, ip);
+    server.on('error', onError);
+    server.on('listening', onListening);
+  })
+  .catch((error) => {
+    console.error('Unable to synchronize the database:', error);
+  });
 /**
  * Normalize a port into a number, string, or false.
  */
