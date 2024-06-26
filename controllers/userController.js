@@ -11,6 +11,7 @@ const getAllUsers = async (req, res) => {
 };
 
 const createUser = async (req, res) => {
+  
   try {
     const userData = req.body;
     if (!userData.email) {

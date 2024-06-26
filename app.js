@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use('/', indexRouter);
 
 /****************start********当做web 服务*******start*************/
-// app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 /* 不同子路径,需要web代码注意文件的加载路径*/
 // app.use('/images', express.static(path.join(__dirname, 'public/images')));
 // app.use('/files', express.static(path.join(__dirname, 'static/files')));

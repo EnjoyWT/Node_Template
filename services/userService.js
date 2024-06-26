@@ -26,6 +26,7 @@ const createUser = async (userData) => {
       // 如果用户不存在，创建新的用户
       const newUser = await models.User.create(userData);
       return newUser;
+
     }
   } catch (error) {
     throw new Error('Failed to create user');
