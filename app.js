@@ -22,7 +22,18 @@ app.use(cookieParser());
 app.use("/", indexRouter);
 
 /****************start********当做web 服务*******start*************/
-app.use(express.static(path.join(__dirname, "public")));
+
+const publicDir = path.join(__dirname, "public");
+
+const testDir = path.join(publicDir, "test");
+
+app.use(express.static(publicDir));
+app.use(express.static(testDir)); //对应的网站子路径都需要单独的设置一 访问路径xxx/text
+
+// app.get("/test", (req, res) => {
+//   res.sendFile(path.join(testDir, "index.html"));
+// });
+
 /* 不同子路径,需要web代码注意文件的加载路径*/
 // app.use('/images', express.static(path.join(__dirname, 'public/images')));
 // app.use('/files', express.static(path.join(__dirname, 'static/files')));
