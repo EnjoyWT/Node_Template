@@ -1,3 +1,5 @@
+
+> 简单项目可以使用这个模板。 复杂大型项目使用 Nestjs 等其他框架
 #### Node_Template
 a template for node with express
 
